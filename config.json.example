@@ -4,8 +4,5 @@
   "host": "github.com",
   "port": 443,
   "path": "/login/oauth/access_token",
-  "method": "POST",
-  "server": {
-    "port": 9999
-  }
+  "method": "POST"
 }
