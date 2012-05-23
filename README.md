@@ -5,6 +5,8 @@ Because of some [security-related limitations](http://blog.vjeux.com/2012/javasc
 
 This is a real bummer. So we built Gatekeeper, which is the missing piece you need in order to make it work.
 
+Gatekeeper works well with [Github.js](http://github.com/michael/github), which helps you accessing the [Github API](http://developer.github.com/v3/) from the browser.
+
 API
 ==========
     
