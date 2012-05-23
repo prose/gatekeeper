@@ -1,8 +1,8 @@
 {
-  "name"          : "poole",
-  "description"   : "Serving Jekyll faithfully.",
-  "url"           : "http://github.com/developmentseed/poole",
-  "keywords"      : ["jekyll", "editor", "markdown"],
+  "name"          : "gatekeeper",
+  "description"   : "Enables client-side applications to dance OAuth with Github.",
+  "url"           : "http://github.com/developmentseed/gatekeeper",
+  "keywords"      : ["github", "oauth"],
   "author"        : "Michael Aufreiter",
   "contributors"  : [],
   "dependencies"  : ["express"],
