@@ -1,7 +1,7 @@
 Gatekeeper
 ==========
 
-Because of some [security-related limitations](http://blog.vjeux.com/2012/javascript/github-oauth-login-browser-side.html), Github prevents you from implement the OAuth Web Application Flow on a client-side only application.
+Because of some [security-related limitations](http://blog.vjeux.com/2012/javascript/github-oauth-login-browser-side.html), Github prevents you from implementing the OAuth Web Application Flow on a client-side only application.
 
 This is a real bummer. So we built Gatekeeper, which is the missing piece you need in order to make it work.
 
@@ -17,13 +17,13 @@ OAuth Steps
 
 Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
 
-1. Redirect users to request GitHub access
+1. Redirect users to request GitHub access.
    
    ```
    GET https://github.com/login/oauth/authorize
    ```
 
-2. GitHub redirects back to your site including a temporary code you need for the next step
+2. GitHub redirects back to your site including a temporary code you need for the next step.
 
    You can grab it like so:
    
