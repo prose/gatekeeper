@@ -1,0 +1,11 @@
+{
+  "client_id": "GITHUB_APPLICATION_CLIENT_ID",
+  "client_secret": "GITHUB_APPLICATION_CLIENT_SECRET",
+  "host": "github.com",
+  "port": 443,
+  "path": "/login/oauth/access_token",
+  "method": "POST",
+  "server": {
+    "port": 9999
+  }
+}

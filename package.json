@@ -1,0 +1,12 @@
+{
+  "name"          : "poole",
+  "description"   : "Serving Jekyll faithfully.",
+  "url"           : "http://github.com/developmentseed/poole",
+  "keywords"      : ["jekyll", "editor", "markdown"],
+  "author"        : "Michael Aufreiter",
+  "contributors"  : [],
+  "dependencies"  : ["express"],
+  "lib"           : ".",
+  "main"          : "index",
+  "version"       : "0.1.0"
+}
