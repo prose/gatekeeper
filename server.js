@@ -1,10 +1,9 @@
 var url  = require('url'),
-    http = require('http'),
-    fs   = require('fs'),
-    express = require('express'),
-    app = express.createServer(),
+    http  = require('http'),
     https = require('https'),
-    qs   = require('querystring');
+    fs    = require('fs'),
+    app   = require('express').createServer(),
+    qs    = require('querystring');
 
 var config = JSON.parse(fs.readFileSync(__dirname+ '/config.json', 'utf-8'));
 
@@ -48,7 +47,7 @@ app.all('*', function (req, res, next) {
 
 
 app.get('/authenticate/:code', function(req, res) {
-  console.log('autenticating code...' + req.params.code);
+  console.log('autenticating code:' + req.params.code);
   authenticate(req.params.code, function(err, token) {
     err || !token ? res.json({"error": "bad_code"}) : res.json({ "token": token });
   });
