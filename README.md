@@ -80,7 +80,7 @@ Heroku
 2. Provide OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET:
 
    ```
-   cake heroku:config OAUTH_CLIENT_ID=your_client_id OAUTH_CLIENT_SECRET=your_client_secret
+   cake -c OAUTH_CLIENT_ID -s OAUTH_CLIENT_SECRET heroku:config
    ```
 
 3. Push changes to heroku
