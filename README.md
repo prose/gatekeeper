@@ -60,8 +60,29 @@ Setup your Gatekeeper
    }
    ```
 
+   You can also set environment variables to override the settings if you don't want Git to track your adjusted config.json file. Just use UPPER_CASE keys.
+
 2. Serve it
 
    ```
    $ node server.js
+   ```
+
+Heroku
+==========
+
+1. Create a new Heroku app
+
+   cake heroku:create
+
+2. Provide OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET:
+
+   ```
+   cake heroku:config OAUTH_CLIENT_ID=your_client_id OAUTH_CLIENT_SECRET=your_client_secret
+   ```
+
+3. Push changes to heroku
+
+   ```
+   cake heroku:push
    ```
