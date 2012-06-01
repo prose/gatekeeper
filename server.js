@@ -5,7 +5,12 @@ var url   = require('url'),
     app   = require('express').createServer(),
     qs    = require('querystring');
 
-var config = JSON.parse(fs.readFileSync(__dirname+ '/config.json', 'utf-8'));
+// Load config defaults from JSON file.
+// Environment variables override defaults.
+var config = JSON.parse(fs.readFileSync(__dirname+ '/config.json.example', 'utf-8'));
+for (var i in config) {
+  config[i] = process.env[i] || config[i];
+}
 
 function authenticate(code, cb) {
   var data = qs.stringify({
@@ -53,6 +58,6 @@ app.get('/authenticate/:code', function(req, res) {
   });
 });
 
-app.listen(config.server.port, null, function (err) {
-  console.log('Gatekeeper, at your service: http://localhost:' + config.server.port);
+app.listen(process.env.PORT, null, function (err) {
+  console.log('Gatekeeper, at your service: http://localhost:' + process.env.PORT);
 });
