@@ -7,10 +7,15 @@ var url   = require('url'),
 
 // Load config defaults from JSON file.
 // Environment variables override defaults.
-var config = JSON.parse(fs.readFileSync(__dirname+ '/config.json.example', 'utf-8'));
-for (var i in config) {
-  config[i] = process.env[i] || config[i];
+function loadConfig() {
+  var config = JSON.parse(fs.readFileSync(__dirname+ '/config.json', 'utf-8'));
+  for (var i in config) {
+    config[i] = process.env[i.toUpperCase()] || config[i];
+  }
+  return config;
 }
+
+var config = loadConfig();
 
 function authenticate(code, cb) {
   var data = qs.stringify({
@@ -20,10 +25,10 @@ function authenticate(code, cb) {
   });
 
   var reqOptions = {
-    host: config.host,
-    port: config.port,
-    path: config.path,
-    method: config.method,
+    host: config.oauth_host,
+    port: config.oauth_port,
+    path: config.oauth_path,
+    method: config.oauth_method,
     headers: { 'content-length': data.length }
   };
 
@@ -58,6 +63,7 @@ app.get('/authenticate/:code', function(req, res) {
   });
 });
 
-app.listen(process.env.PORT, null, function (err) {
-  console.log('Gatekeeper, at your service: http://localhost:' + process.env.PORT);
+
+app.listen(config.port, null, function (err) {
+  console.log('Gatekeeper, at your service: http://localhost:' + config.port);
 });
