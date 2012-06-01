@@ -72,8 +72,10 @@ Heroku
 ==========
 
 1. Create a new Heroku app
-
+   
+   ```
    cake heroku:create
+   ```
 
 2. Provide OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET:
 
