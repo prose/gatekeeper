@@ -6,6 +6,7 @@
   "author"        : "Michael Aufreiter",
   "contributors"  : [],
   "dependencies"  : ["express"],
+  "engines"       : { "node": "0.6.x" },
   "lib"           : ".",
   "main"          : "index",
   "version"       : "0.1.0"
