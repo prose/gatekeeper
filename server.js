@@ -12,6 +12,8 @@ function loadConfig() {
   for (var i in config) {
     config[i] = process.env[i.toUpperCase()] || config[i];
   }
+  console.log('Configuration');
+  console.log(config);
   return config;
 }
 
@@ -19,8 +21,8 @@ var config = loadConfig();
 
 function authenticate(code, cb) {
   var data = qs.stringify({
-    client_id: config.client_id,
-    client_secret: config.client_secret,
+    client_id: config.oauth_client_id,
+    client_secret: config.oauth_client_secret,
     code: code
   });
 
@@ -57,9 +59,11 @@ app.all('*', function (req, res, next) {
 
 
 app.get('/authenticate/:code', function(req, res) {
-  console.log('autenticating code:' + req.params.code);
+  console.log('authenticating code:' + req.params.code);
   authenticate(req.params.code, function(err, token) {
-    err || !token ? res.json({"error": "bad_code"}) : res.json({ "token": token });
+    var result = err || !token ? {"error": "bad_code"} : { "token": token };
+    console.log(result);
+    res.json(result);
   });
 });
 
