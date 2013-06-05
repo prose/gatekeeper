@@ -43,9 +43,9 @@ Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
 
 Setup your Gatekeeper
 ==========
-1. `git clone git@github.com:prose/gatekeeper.git`
+1. Clone it `git clone git@github.com:prose/gatekeeper.git`
 
-2. `cd gatekeeper && npm install` 
+2. Install Dependencies `cd gatekeeper && npm install` 
 
 3. Adjust config.json
 
