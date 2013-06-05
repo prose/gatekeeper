@@ -7,15 +7,13 @@ This is a real bummer. So we built Gatekeeper, which is the missing piece you ne
 
 Gatekeeper works well with [Github.js](http://github.com/michael/github), which helps you accessing the [Github API](http://developer.github.com/v3/) from the browser.
 
-API
-==========
+## API
     
 ```
 GET http://localhost:9999/authenticate/TEMPORARY_CODE
 ```
 
-OAuth Steps
-==========
+## OAuth Steps
 
 Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
 
@@ -41,8 +39,8 @@ Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
    });
    ```
 
-Setup your Gatekeeper
-==========
+## Setup your Gatekeeper
+
 1. Clone it 
 
     ```
@@ -79,8 +77,7 @@ Setup your Gatekeeper
    $ node server.js
    ```
 
-Deploy on Heroku
-==========
+## Deploy on Heroku
 
 1. Create a new Heroku app
    
