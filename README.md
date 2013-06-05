@@ -43,8 +43,11 @@ Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
 
 Setup your Gatekeeper
 ==========
+1. `git clone git@github.com:prose/gatekeeper.git`
 
-1. Adjust config.json
+2. `cd gatekeeper && npm install` 
+
+3. Adjust config.json
 
    ```js
    {
@@ -62,7 +65,7 @@ Setup your Gatekeeper
 
    You can also set environment variables to override the settings if you don't want Git to track your adjusted config.json file. Just use UPPER_CASE keys.
 
-2. Serve it
+4. Serve it
 
    ```
    $ node server.js
