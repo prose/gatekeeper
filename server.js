@@ -1,9 +1,10 @@
-var url   = require('url'),
-    http  = require('http'),
-    https = require('https'),
-    fs    = require('fs'),
-    app   = require('express').createServer(),
-    qs    = require('querystring');
+var url     = require('url'),
+    http    = require('http'),
+    https   = require('https'),
+    fs      = require('fs'),
+    qs      = require('querystring'),
+    express = require('express'),
+    app     = express();
 
 // Load config defaults from JSON file.
 // Environment variables override defaults.
