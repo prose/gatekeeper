@@ -28,8 +28,6 @@ function authenticate(code, cb) {
     grant_type: 'authorization_code'
   });
 
-  console.log(data);
-
   var reqOptions = {
     host: config.oauth_host,
     port: config.oauth_port,
