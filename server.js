@@ -24,15 +24,21 @@ function authenticate(code, cb) {
   var data = qs.stringify({
     client_id: config.oauth_client_id,
     client_secret: config.oauth_client_secret,
-    code: code
+    code: code,
+    grant_type: 'authorization_code'
   });
+
+  console.log(data);
 
   var reqOptions = {
     host: config.oauth_host,
     port: config.oauth_port,
     path: config.oauth_path,
     method: config.oauth_method,
-    headers: { 'content-length': data.length }
+    headers: { 
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'content-length': data.length
+    }
   };
 
   var body = "";
