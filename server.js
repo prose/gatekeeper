@@ -46,7 +46,7 @@ function authenticate(code, cb) {
     res.setEncoding('utf8');
     res.on('data', function (chunk) { body += chunk; });
     res.on('end', function() {
-      cb(null, qs.parse(body).access_token);
+      cb(null, JSON.parse(body).access_token);
     });
   });
 
