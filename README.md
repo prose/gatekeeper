@@ -108,41 +108,53 @@ Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
 ## Deploy on Heroku
 
 0. Install [heroku CLI](https://devcenter.heroku.com/articles/heroku-command).
-Login to heroku:
+  Login to heroku:
 
-```
-heroku login
-```
+  ```
+  heroku login
+  ```
 
 1. Create a new Heroku app
 
-```
-heroku apps:create
-```
+  ```
+  heroku apps:create
+  ```
 
 2. Rename it (optional)
 
-```
-heroku apps:rename NEW_NAME
-```
+  ```
+  heroku apps:rename NEW_NAME
+  ```
 
 3. Provide OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET:
 
-```
-heroku config:set DEFAULT='{"client_id": "CLIENT_ID", "client_secret": "CLIENT_SECRET"}'
-```
+  ```
+  heroku config:set DEFAULT='{"client_id": "CLIENT_ID", "client_secret": "CLIENT_SECRET"}'
+  ```
 
 4. Push changes to heroku
 
-```
-git push heroku master
-```
+  ```
+  git push heroku master
+  ```
 
 5. Verify it is working:
 
-```
-curl your_app_name.herokuapp.com/
-```
+  ```
+  curl your_app_name.herokuapp.com/
+  ```
 
-Should return something like `Cannot GET /`
+  Should return something like `Cannot GET /`
+
+  To actually trade github code for an access token call: 
+
+  ```
+  curl your_app_name.herokuapp.com/authenticate/code
+  ```
+
+  If you want to use a particular use case (e.g. beta), declared in your config:
+
+  ```
+  curl your_app_name.herokuapp.com/authenticate/code?case=beta
+  ```
 
