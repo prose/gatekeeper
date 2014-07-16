@@ -6,7 +6,6 @@ var url = require('url'),
   express = require('express'),
   app = express();
 
-  console.log(process.env);
 // Load config defaults from JSON file.
 // Environment variables override defaults.
 function loadConfig() {
@@ -78,9 +77,9 @@ app.all('*', function(req, res, next) {
 
 
 app.get('/authenticate/:code', function(req, res) {
-  console.log('authenticating code:' + req.params.code);
-  authenticate(req.params.code, req.params.
-    case, function(err, token) {
+  console.log('authenticating code:', req.params.code);
+  console.log('use case: ', req.query.case);
+  authenticate(req.params.code, req.query.case, function(err, token) {
       var result = err || !token ? {
         "error": "bad_code"
       } : {
