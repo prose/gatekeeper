@@ -43,67 +43,67 @@ Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
 
 1. Clone it
 
-```
-git clone git@github.com:anvaka/gatekeeper.git
-```
+  ```
+  git clone git@github.com:anvaka/gatekeeper.git
+  ```
 
 2. Install Dependencies
 
-```
-cd gatekeeper && npm install
-```
+  ```
+  cd gatekeeper && npm install
+  ```
 
 3. Adjust config.json
 
-```js
-{
-  "default" : {
-    "client_id": "GITHUB_APPLICATION_CLIENT_ID",
-    "client_secret": "GITHUB_APPLICATION_CLIENT_SECRET"
-  },
-  "oauth_host": "github.com",
-  "oauth_port": 443,
-  "oauth_path": "/login/oauth/access_token",
-  "oauth_method": "POST"
-}
-```
+  ```js
+  {
+    "default" : {
+      "client_id": "GITHUB_APPLICATION_CLIENT_ID",
+      "client_secret": "GITHUB_APPLICATION_CLIENT_SECRET"
+    },
+    "oauth_host": "github.com",
+    "oauth_port": 443,
+    "oauth_path": "/login/oauth/access_token",
+    "oauth_method": "POST"
+  }
+  ```
 
-If you want to support multiple apps (e.g. one for localhost development, one
-for beta and one for production), you can adjust your config with use case name:
+  If you want to support multiple apps (e.g. one for localhost development, one
+  for beta and one for production), you can adjust your config with use case name:
 
-```js
-{
-  "local": {
-    "client_id": "GITHUB_APPLICATION_LOCAL_CLIENT_ID",
-    "client_secret": "GITHUB_APPLICATION_LOCAL_CLIENT_SECRET"
-  },
-  "beta": {
-    "client_id": "GITHUB_APPLICATION_BETA_CLIENT_ID",
-    "client_secret": "GITHUB_APPLICATION_BETA_CLIENT_SECRET"
-  },
-  "default" : {
-    "client_id": "GITHUB_APPLICATION_CLIENT_ID",
-    "client_secret": "GITHUB_APPLICATION_CLIENT_SECRET"
-  },
-  "oauth_host": "github.com",
-  "oauth_port": 443,
-  "oauth_path": "/login/oauth/access_token",
-  "oauth_method": "POST"
-}
-```
+  ```js
+  {
+    "local": {
+      "client_id": "GITHUB_APPLICATION_LOCAL_CLIENT_ID",
+      "client_secret": "GITHUB_APPLICATION_LOCAL_CLIENT_SECRET"
+    },
+    "beta": {
+      "client_id": "GITHUB_APPLICATION_BETA_CLIENT_ID",
+      "client_secret": "GITHUB_APPLICATION_BETA_CLIENT_SECRET"
+    },
+    "default" : {
+      "client_id": "GITHUB_APPLICATION_CLIENT_ID",
+      "client_secret": "GITHUB_APPLICATION_CLIENT_SECRET"
+    },
+    "oauth_host": "github.com",
+    "oauth_port": 443,
+    "oauth_path": "/login/oauth/access_token",
+    "oauth_method": "POST"
+  }
+  ```
 
-You can also set environment variables to override the settings if you don't
-want Git to track your adjusted config.json file:
+  You can also set environment variables to override the settings if you don't
+  want Git to track your adjusted config.json file:
 
-``` sh
-export BETA='{"client_id": "CLIENT_ID", "client_secret": "CLIENT_SECRET"}'
-```
+  ``` sh
+  export BETA='{"client_id": "CLIENT_ID", "client_secret": "CLIENT_SECRET"}'
+  ```
 
 4. Serve it
 
-```
-$ node server.js
-```
+  ```
+  $ node server.js
+  ```
 
 ## Deploy on Heroku
 
