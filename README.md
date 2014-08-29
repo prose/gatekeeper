@@ -55,17 +55,15 @@ Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
 
 3. Adjust config.json
 
-   ```js
+   ```json
    {
-     "client_id": "GITHUB_APPLICATION_CLIENT_ID",
-     "client_secret": "GITHUB_APPLICATION_CLIENT_SECRET",
-     "host": "github.com",
-     "port": 443,
-     "path": "/login/oauth/access_token",
-     "method": "POST",
-     "server": {
-       "port": 9999
-     }
+     "oauth_client_id": "GITHUB_APPLICATION_CLIENT_ID",
+     "oauth_client_secret": "GITHUB_APPLICATION_CLIENT_SECRET",
+     "oauth_host": "github.com",
+     "oauth_port": 443,
+     "oauth_path": "/login/oauth/access_token",
+     "oauth_method": "POST",
+     "port": 9999
    }
    ```
 
