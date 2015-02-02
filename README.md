@@ -107,3 +107,11 @@ OR
    ```
    heroku restart
    ```
+
+##Deploy on Azure
+
+### Azure Button
+
+Use the button below to instantly setup your own Gatekeeper instance on Azure.
+
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
