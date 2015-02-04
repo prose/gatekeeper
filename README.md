@@ -115,3 +115,24 @@ OR
 Use the button below to instantly setup your own Gatekeeper instance on Azure.
 
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
+
+### Azure manually
+
+1. Create a new Azure site
+
+   ```
+   azure site create SITE_NAME --git
+   ```
+   
+2. Provide OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET:
+
+   ```
+   azure site appsetting add OAUTH_CLIENT_ID=XXXX 
+   azure site appsetting add OAUTH_CLIENT_SECRET=YYYY
+   ```
+
+3. Push changes to Azure
+
+   ```
+   git push azure master
+   ```
