@@ -16,7 +16,8 @@
   "author": "Michael Aufreiter",
   "contributors": [],
   "dependencies": {
-    "express": "~3.16.0"
+    "express": "~3.16.0",
+    "lodash": "^3.9.3"
   },
   "engines": {
     "node": ">= 0.6.x"
