@@ -1,6 +1,8 @@
 var url     = require('url'),
+    http    = require('http'),
+    https   = require('https'),
     fs      = require('fs'),
-    request = require('request'),
+    qs      = require('querystring'),
     express = require('express'),
     app     = express();
 
@@ -19,37 +21,39 @@ function loadConfig() {
 var config = loadConfig();
 
 function authenticate(code, cb) {
-  var data = {
+  var data = qs.stringify({
     client_id: config.oauth_client_id,
     client_secret: config.oauth_client_secret,
-    code: code,
-    grant_type: 'authorization_code',
-    redirect_uri: 'http://lieu.io/prose/'
-  };
+    code: code
+  });
 
   var reqOptions = {
-    url: config.oauth_host + config.oauth_path,
-    qs: data
+    host: config.oauth_host,
+    port: config.oauth_port,
+    path: config.oauth_path,
+    method: config.oauth_method,
+    headers: { 'content-length': data.length }
   };
 
-
-  request.post(reqOptions, function (error, res, body) {
-    if (error) { cb(e.message); }
-    try {
-      body = JSON.parse(body);
-    }
-    catch (e) {
-      cb(e.message);
-    }
-    cb(null, body.access_token);
+  var body = "";
+  var req = https.request(reqOptions, function(res) {
+    res.setEncoding('utf8');
+    res.on('data', function (chunk) { body += chunk; });
+    res.on('end', function() {
+      cb(null, qs.parse(body).access_token);
+    });
   });
+
+  req.write(data);
+  req.end();
+  req.on('error', function(e) { cb(e.message); });
 }
 
 
 // Convenience for allowing CORS on routes - GET only
 app.all('*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.header('Access-Control-Allow-Origin', '*'); 
+  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS'); 
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
@@ -60,9 +64,6 @@ app.get('/authenticate/:code', function(req, res) {
   authenticate(req.params.code, function(err, token) {
     var result = err || !token ? {"error": "bad_code"} : { "token": token };
     console.log(result);
-    if (err) {
-      console.log(err);
-    }
     res.json(result);
   });
 });
