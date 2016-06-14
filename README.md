@@ -10,7 +10,7 @@ Gatekeeper works well with [Github.js](http://github.com/michael/github), which 
 ## API
 
 ```
-GET http://localhost:9999/authenticate/TEMPORARY_CODE
+GET http://localhost:9999/authenticate/CLIENT_ID/TEMPORARY_CODE
 ```
 
 ## OAuth Steps
@@ -34,7 +34,7 @@ Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
 3. Request the actual token using your instance of Gatekeeper, which knows your `client_secret`.
 
    ```js
-   $.getJSON('http://localhost:9999/authenticate/'+code, function(data) {
+   $.getJSON('http://localhost:9999/authenticate/'+clientId+'/'+code, function(data) {
      console.log(data.token);
    });
    ```
@@ -56,18 +56,28 @@ Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
 3. Adjust config.json
 
    ```json
-   {
-     "oauth_client_id": "GITHUB_APPLICATION_CLIENT_ID",
-     "oauth_client_secret": "GITHUB_APPLICATION_CLIENT_SECRET",
-     "oauth_host": "github.com",
-     "oauth_port": 443,
-     "oauth_path": "/login/oauth/access_token",
-     "oauth_method": "POST",
-     "port": 9999
-   }
+    {
+      "port": 9999,
+      "apps": [
+        {
+          "oauth_client_id": "GITHUB_APPLICATION_CLIENT_ID",
+          "oauth_client_secret": "GITHUB_APPLICATION_CLIENT_SECRET",
+          "oauth_host": "github.enterprise.fr",
+          "oauth_port": 443,
+          "oauth_path": "/login/oauth/access_token",
+          "oauth_method": "POST"
+        },
+        {
+          "oauth_client_id": "GITHUB_APPLICATION_CLIENT_ID",
+          "oauth_client_secret": "GITHUB_APPLICATION_CLIENT_SECRET",
+          "oauth_host": "github.com",
+          "oauth_port": 443,
+          "oauth_path": "/login/oauth/access_token",
+          "oauth_method": "POST"
+        }
+      ]
+    }
    ```
-
-   You can also set environment variables to override the settings if you don't want Git to track your adjusted config.json file. Just use UPPER_CASE keys.
 
 4. Serve it
 
@@ -91,21 +101,12 @@ Use the button below to instantly setup your own Gatekeeper instance on Heroku.
    heroku apps:create APP_NAME
    ```
 
-3. Provide OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET:
+2. Adjust config.json
 
-   ```
-   heroku config:set OAUTH_CLIENT_ID=XXXX OAUTH_CLIENT_SECRET=YYYY
-   ```
-
-4. Push changes to heroku
+3. Push changes to heroku
 
    ```
    git push heroku master
-   ```
-OR
-
-   ```
-   heroku restart
    ```
 
 ##Deploy on Azure
@@ -123,13 +124,8 @@ Use the button below to instantly setup your own Gatekeeper instance on Azure.
    ```
    azure site create SITE_NAME --git
    ```
-   
-2. Provide OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET:
 
-   ```
-   azure site appsetting add OAUTH_CLIENT_ID=XXXX 
-   azure site appsetting add OAUTH_CLIENT_SECRET=YYYY
-   ```
+2. Adjust config.json
 
 3. Push changes to Azure
 
