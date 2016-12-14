@@ -35,6 +35,7 @@ function authenticate(code, cb) {
     method: config.oauth_method,
     headers: { 
       'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json',
       'content-length': data.length
     }
   };
