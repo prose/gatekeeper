@@ -11,6 +11,20 @@ var url     = require('url'),
 function loadConfig() {
   var config = JSON.parse(fs.readFileSync(__dirname+ '/config.json', 'utf-8'));
   for (var i in config) {
+    if (i === 'clients') {
+      for (var client in config.clients) {
+        for (var clientKey in config.clients[client]) {
+          var envKey;
+          if (client === 'default') {
+            envKey = clientKey.toUpperCase();
+          } else {
+            envKey = (clientKey + '_' + client).toUpperCase();
+          }
+          config.clients[client][clientKey] = process.env[envKey] || config.clients[client][clientKey];
+        }
+      }
+      continue;
+    }
     config[i] = process.env[i.toUpperCase()] || config[i];
   }
   console.log('Configuration');
@@ -20,10 +34,10 @@ function loadConfig() {
 
 var config = loadConfig();
 
-function authenticate(code, cb) {
+function authenticate(code, client, cb) {
   var data = qs.stringify({
-    client_id: config.oauth_client_id,
-    client_secret: config.oauth_client_secret,
+    client_id: config.clients[client].oauth_client_id,
+    client_secret: config.clients[client].oauth_client_secret,
     code: code,
     grant_type: 'authorization_code'
   });
@@ -63,10 +77,27 @@ app.all('*', function (req, res, next) {
   next();
 });
 
-
+app.get('/authenticate/:client/:code', function(req, res) {
+  if (!config.clients[client]) {
+    return res.json(404, {
+      error: 'unknown_client'
+    });
+  }
+  console.log('authenticating ' + req.params.client + ' code:' + req.params.code);
+  authenticate(req.params.code, req.params.client, function(err, token) {
+    if (err || !token) {
+      return res.json(402, {
+        error: 'bad_code'
+      });
+    }
+    res.json({
+      token: token
+    });
+  });
+});
 app.get('/authenticate/:code', function(req, res) {
   console.log('authenticating code:' + req.params.code);
-  authenticate(req.params.code, function(err, token) {
+  authenticate(req.params.code, 'default', function(err, token) {
     if (err || !token) {
       return res.json(402, {
         error: 'bad_code'
