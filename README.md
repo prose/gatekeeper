@@ -5,7 +5,7 @@ Because of some [security-related limitations](http://blog.vjeux.com/2012/javasc
 
 This is a real bummer. So we built Gatekeeper, which is the missing piece you need in order to make it work.
 
-Gatekeeper works well with [Github.js](http://github.com/michael/github), which helps you accessing the [Github API](http://developer.github.com/v3/) from the browser.
+Gatekeeper works well with [Github.js](http://github.com/michael/github), which helps you access the [Github API](http://developer.github.com/v3/) from the browser. Gatekeeper is free to use under the [MIT license](https://github.com/prose/gatekeeper/blob/master/LICENSE).
 
 ## API
 
@@ -123,11 +123,11 @@ Use the button below to instantly setup your own Gatekeeper instance on Azure.
    ```
    azure site create SITE_NAME --git
    ```
-   
+
 2. Provide OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET:
 
    ```
-   azure site appsetting add OAUTH_CLIENT_ID=XXXX 
+   azure site appsetting add OAUTH_CLIENT_ID=XXXX
    azure site appsetting add OAUTH_CLIENT_SECRET=YYYY
    ```
 
