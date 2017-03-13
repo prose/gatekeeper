@@ -7,6 +7,8 @@ This is a real bummer. So we built Gatekeeper, which is the missing piece you ne
 
 Gatekeeper works well with [Github.js](http://github.com/michael/github), which helps you access the [Github API](http://developer.github.com/v3/) from the browser. Gatekeeper is free to use under the [MIT license](https://github.com/prose/gatekeeper/blob/master/LICENSE).
 
+It is designed for drop-in hosting on [Heroku](https://heroku.com).
+
 ## API
 
 ```

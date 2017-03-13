@@ -1,6 +1,18 @@
 {
-  "oauth_client_id": "GITHUB_APPLICATION_CLIENT_ID",
-  "oauth_client_secret": "GITHUB_APPLICATION_CLIENT_SECRET",
+  "clients": {
+    "default": {
+      "oauth_client_id": "GITHUB_APPLICATION_CLIENT_ID",
+      "oauth_client_secret": "GITHUB_APPLICATION_CLIENT_SECRET"
+    },
+    "ssl": {
+      "oauth_client_id": "GITHUB_APPLICATION_CLIENT_ID",
+      "oauth_client_secret": "GITHUB_APPLICATION_CLIENT_SECRET"
+    },
+    "chrome": {
+      "oauth_client_id": "GITHUB_APPLICATION_CLIENT_ID",
+      "oauth_client_secret": "GITHUB_APPLICATION_CLIENT_SECRET"
+    }
+  },
   "oauth_host": "github.com",
   "oauth_port": 443,
   "oauth_path": "/login/oauth/access_token",
