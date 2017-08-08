@@ -108,7 +108,7 @@ OR
    heroku restart
    ```
 
-##Deploy on Azure
+## Deploy on Azure
 
 ### Azure Button
 
