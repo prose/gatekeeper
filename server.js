@@ -10,11 +10,15 @@ var url     = require('url'),
 // Environment variables override defaults.
 function loadConfig() {
   var config = JSON.parse(fs.readFileSync(__dirname+ '/config.json', 'utf-8'));
+  log('Configuration');
   for (var i in config) {
     config[i] = process.env[i.toUpperCase()] || config[i];
+    if (i === 'oauth_client_id' || i === 'oauth_client_secret') {
+      log(i + ':', config[i], true);
+    } else {
+      log(i + ':', config[i]);
+    }  
   }
-  console.log('Configuration');
-  console.log(config);
   return config;
 }
 
@@ -49,6 +53,19 @@ function authenticate(code, cb) {
   req.on('error', function(e) { cb(e.message); });
 }
 
+function log(label, value, sanitized) {
+  value = value || '';
+  if (sanitized){
+    if (typeof(value) === 'string' && value.length > 10){
+      console.log(label, value.substring(3,0) + '...');
+    } else {
+      console.log(label, '...');
+    }
+  } else {
+    console.log(label, value);
+  }
+}
+
 
 // Convenience for allowing CORS on routes - GET only
 app.all('*', function (req, res, next) {
@@ -60,10 +77,15 @@ app.all('*', function (req, res, next) {
 
 
 app.get('/authenticate/:code', function(req, res) {
-  console.log('authenticating code:' + req.params.code);
+  log('authenticating code:', req.params.code, true);
   authenticate(req.params.code, function(err, token) {
-    var result = err || !token ? {"error": "bad_code"} : { "token": token };
-    console.log(result);
+    if ( err || !token ) {
+      result = {"error": "bad_code"};
+      log(result.error);
+    } else {
+      result = {"token": token};
+      log("token", result.token, true);
+    }    
     res.json(result);
   });
 });
@@ -71,5 +93,5 @@ app.get('/authenticate/:code', function(req, res) {
 var port = process.env.PORT || config.port || 9999;
 
 app.listen(port, null, function (err) {
-  console.log('Gatekeeper, at your service: http://localhost:' + port);
+  log('Gatekeeper, at your service: http://localhost:' + port);
 });
