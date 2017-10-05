@@ -6,6 +6,10 @@ var url     = require('url'),
     express = require('express'),
     app     = express();
 
+var TRUNCATE_THRESHOLD = 10,
+    REVEALED_CHARS = 3,
+    REPLACEMENT = '***';
+    
 // Load config defaults from JSON file.
 // Environment variables override defaults.
 function loadConfig() {
@@ -53,13 +57,21 @@ function authenticate(code, cb) {
   req.on('error', function(e) { cb(e.message); });
 }
 
+/**
+ * Handles logging to the console.
+ * Logged values can be sanitized before they are logged 
+ * 
+ * @param {string} label - label for the log message
+ * @param {Object||string} value - the actual log message, can be a string or a plain object
+ * @param {boolean} sanitized - should the value be sanitized before logging?
+ */
 function log(label, value, sanitized) {
   value = value || '';
   if (sanitized){
-    if (typeof(value) === 'string' && value.length > 10){
-      console.log(label, value.substring(3,0) + '...');
+    if (typeof(value) === 'string' && value.length > TRUNCATE_THRESHOLD){
+      console.log(label, value.substring(REVEALED_CHARS,0) + REPLACEMENT);
     } else {
-      console.log(label, '...');
+      console.log(label, REPLACEMENT);
     }
   } else {
     console.log(label, value);
