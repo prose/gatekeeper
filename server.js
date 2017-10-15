@@ -92,7 +92,7 @@ app.get('/authenticate/:code', function(req, res) {
   log('authenticating code:', req.params.code, true);
   authenticate(req.params.code, function(err, token) {
     if ( err || !token ) {
-      result = {"error": "bad_code"};
+      result = {"error": err || "bad_code"};
       log(result.error);
     } else {
       result = {"token": token};
