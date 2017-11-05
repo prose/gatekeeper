@@ -103,11 +103,5 @@ app.get('/authenticate/:code', function(req, res) {
   });
 });
 
-// var port = process.env.PORT || config.port || 9999;
-//
-// app.listen(port, null, function (err) {
-//   log('Gatekeeper, at your service: http://localhost:' + port);
-// });
-
 module.exports.config = config;
 module.exports.app = app;
