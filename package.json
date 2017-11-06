@@ -7,7 +7,8 @@
     "oauth"
   ],
   "scripts": {
-      "start": "node server.js"
+    "start": "node index.js",
+    "test": "node tests/server.test.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,10 @@
     "node": "~6.11.1"
   },
   "main": "index",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "devDependencies": {
+    "nock": "^9.0.27",
+    "supertest": "^3.0.0",
+    "tape": "^4.8.0"
+  }
 }
