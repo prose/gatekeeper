@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: developmentseed/circleci:node8.4-python2.7
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - gatekeeper-{{ .Branch }}-{{ checksum "package.json" }}
+
+      - run:
+          name: Install dependencies
+          command: npm install
+
+      - save_cache:
+          key: gatekeeper-{{ .Branch}}-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+      - run:
+          name: Run tests
+          command: npm run test
