@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: developmentseed/circleci:node8.4-python2.7
+      - image: circleci/node:8.9
 
     steps:
       - checkout
