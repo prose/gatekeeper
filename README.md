@@ -76,7 +76,7 @@ Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
 4. Serve it
 
    ```
-   $ node server.js
+   $ node index.js
    ```
 
 ## Deploy on Heroku
