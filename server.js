@@ -16,7 +16,11 @@ function loadConfig() {
   var config = JSON.parse(fs.readFileSync(__dirname+ '/config.json', 'utf-8'));
   log('Configuration');
   for (var i in config) {
-    config[i] = (process.env[i.toUpperCase()] || config[i]).trim();
+    var configItem = process.env[i.toUpperCase()] || config[i];
+    if (typeof configItem === "string") {
+      configItem = configItem.trim();
+    }
+    config[i] = configItem;
     if (i === 'oauth_client_id' || i === 'oauth_client_secret') {
       log(i + ':', config[i], true);
     } else {
