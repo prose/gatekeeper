@@ -18,6 +18,7 @@
   "license": "MIT",
   "contributors": [],
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "~4.16.2"
   },
   "engines": {
