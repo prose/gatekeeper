@@ -95,17 +95,20 @@ Use the button below to instantly setup your own Gatekeeper instance on Heroku.
    heroku apps:create APP_NAME
    ```
 
-3. Provide OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET:
+3. Provide GITHUB_APPLICATION_CLIENT_ID and GITHUB_APPLICATION_CLIENT_SECRET:
 
    ```
-   heroku config:set OAUTH_CLIENT_ID=XXXX OAUTH_CLIENT_SECRET=YYYY
+   heroku config:set GITHUB_APPLICATION_CLIENT_ID=XXXX GITHUB_APPLICATION_CLIENT_SECRET=YYYY
    ```
 
 4. Push changes to heroku
 
+Note: heroku expects `master` or `main` branches -- you can't push from the default `devlopment` branch. If your repo doesn't have a master already, run `git co -b master`.
+
    ```
    git push heroku master
    ```
+
 OR
 
    ```
@@ -128,11 +131,11 @@ Use the button below to instantly setup your own Gatekeeper instance on Azure.
    azure site create SITE_NAME --git
    ```
 
-2. Provide OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET:
+2. Provide GITHUB_APPLICATION_CLIENT_ID and GITHUB_APPLICATION_CLIENT_SECRET:
 
    ```
-   azure site appsetting add OAUTH_CLIENT_ID=XXXX
-   azure site appsetting add OAUTH_CLIENT_SECRET=YYYY
+   azure site appsetting add GITHUB_APPLICATION_CLIENT_ID=XXXX
+   azure site appsetting add GITHUB_APPLICATION_CLIENT_SECRET=YYYY
    ```
 
 3. Push changes to Azure
