@@ -79,6 +79,24 @@ Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
    $ node index.js
    ```
 
+## Run using Docker
+
+You can build and run the docker image:
+```shell
+docker build -t gatekeeper .
+docker run -p 443:443 -p 9999:9999 --name gatekeeper-server gatekeeper
+```
+
+Or run it with a .env file:
+```shell
+docker run -p 443:443 -p 9999:9999 --env-file .env --name gatekeeper-server gatekeeper
+```
+
+Or run using the docker hub image:
+```shell
+docker run -p 443:443 -p 9999:9999 --name gatekeeper-server ludwigschubi/gatekeeper
+```
+
 ## Deploy on Heroku
 
 ### Heroku Button
