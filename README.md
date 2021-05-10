@@ -82,18 +82,18 @@ Also see the [documentation on Github](http://developer.github.com/v3/oauth/).
 ## Run using Docker
 
 You can build and run the docker image:
-```shell
+```bash
 docker build -t gatekeeper .
 docker run -p 443:443 -p 9999:9999 --name gatekeeper-server gatekeeper
 ```
 
 Or run it with a .env file:
-```shell
+```bash
 docker run -p 443:443 -p 9999:9999 --env-file .env --name gatekeeper-server gatekeeper
 ```
 
 Or run using the docker hub image:
-```shell
+```bash
 docker run -p 443:443 -p 9999:9999 --name gatekeeper-server ludwigschubi/gatekeeper
 ```
 
