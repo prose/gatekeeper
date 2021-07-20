@@ -3,6 +3,7 @@ var url     = require('url'),
     https   = require('https'),
     fs      = require('fs'),
     qs      = require('querystring'),
+    cors    = require('cors'),
     express = require('express'),
     app     = express();
 
@@ -84,12 +85,7 @@ function log(label, value, sanitized) {
 
 
 // Convenience for allowing CORS on routes - GET only
-app.all('*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+app.use(cors())
 
 
 app.get('/authenticate/:code', function(req, res) {
